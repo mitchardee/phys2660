@@ -1,0 +1,12 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Homework #: 9
+// Problem #: 1
+// Program Name: emh3fm_bite.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "random.hpp"
+#include "hist.hpp"
+

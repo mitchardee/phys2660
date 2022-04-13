@@ -1,0 +1,20 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Final
+//Problem #3
+// Program Name: emh3fm_chi2fit.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "hist.hpp"
+
+//Arrays containing the scaled values for the prediction histograms
+
+int sig_val[50] = {};
+int back_val[50] = {};
+int sig_err[50] = {}
+int back_err[50] =
+
+int main(){

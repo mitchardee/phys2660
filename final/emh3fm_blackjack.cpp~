@@ -1,0 +1,103 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Final
+//Problem #2
+// Program Name: emh3fm_blackjack.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include "random.hpp"
+#include "hist.hpp"
+
+typedef struct{
+  int size;
+  int cards[52]; //11=jack 12=queen 13=king
+} deck;
+
+void empty_hand(deck *d);
+int pick_card();
+int rmv_card(deck *d, int v); //removes first instance of card value v if found and returns its value, else returns 0
+void add_card(deck *d, int v); //adds a card of value v to the end of hand
+int hand_value(deck *d); //returns the hard-value of the hand
+void dealer_play(deck *hand); //plays out dealer's hand
+void print_deck(deck *d); //for testing purposes
+
+int main(int argc, char *argv[]){
+  if(argc!=4){
+    printf("Enter at command line: <# pseudohands> <player's hand [8-16] or 'all'> <dealer's card [2-A] or 'all'>\n");
+    return -1;}
+
+  int hands = atoi(argv[1]);
+int 
+
+  printf("With a hand value of 
+  
+  return 0;
+
+}
+
+
+void empty_hand(deck *d){
+  d->size = 0;
+  return;
+}
+
+int pick_card(){ 
+  return randui(1,13);
+}
+
+int rmv_card(deck *d, int v){
+  int i;
+  for(i=0;i<d->size;i++)
+    if(d->cards[i]==v){
+      d->size--;
+      int temp = d->cards[i];
+      d->cards[i] = d->cards[d->size];
+      return temp;}
+  return 0;
+}
+
+void add_card(deck *d, int v){ //can throw an error if misused
+  d->cards[d->size] = v;
+  d->size++;
+  return;
+}
+
+int hand_value(deck *d){
+  int aces = 0;
+  int value = 0;
+  int i;
+  for(i=0;i<d->size;i++){
+    int b = d->cards[i];
+    if(b==1){
+      value++;
+      aces++;}
+    if(b>1&&b<10)
+      value += b;
+    if(b>9)
+      value += 10;
+    // printf("%i\n",value);
+}
+
+  while(value<=11 && aces){
+    value += 10;
+    aces--;
+  }
+
+  return value;
+}
+
+void dealer_play(deck *hand){
+  while(hand_value(hand)<17)
+    add_card(hand, pick_card());
+}
+
+void print_deck(deck *d){
+  int i;
+  for(i=0;i<d->size;i++){
+    printf("%i\t",d->cards[i]);
+    if(i%13==12) printf("\n");}
+  printf("\n");
+}

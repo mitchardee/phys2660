@@ -1,0 +1,136 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Final
+// Program Name: emh3fm_shutthebox.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include "random.hpp"
+#include "hist.hpp"
+
+typedef struct{
+  int value;
+  int open; //1 for open, 0 for closed
+} tile;
+
+int turn(tile *box, int roll, int strat); //returns 0 for game over, otherwise 1
+
+int main(int argc, char *argv[]){
+  if(argc<2){
+    printf("Enter at command line: <trials> <strategy [1-2] (optional)>\n");
+    return -1;}
+
+  int trials = atoi(argv[1]); //assuming valid inputs
+
+  int strat;
+  if(argc>2) strat = atoi(argv[2]);
+  else strat = 0;
+
+
+  if(strat == 1||strat == 0){
+    h1 h;
+    h1init(&h,77,-0.5,76.5,"Results of turns using More-Tiles-First strategy");
+    h1labels(&h,"Score","Entries");
+    int shut=0, worst=0; //best- and worst-case scenarios
+
+    int i;
+    for(i=0;i<trials;i++){
+
+      tile box[12];
+      int j;
+      for(j=0;j<12;j++){ //make the new box
+	box[j].value = j+1;
+	box[j].open = 1;}
+
+      int keep_going = 1;
+      while(keep_going){
+	int roll = randui(1,6) + randui(1,6);
+	keep_going = turn(box, roll, 1);
+      }
+
+      int score=0;
+      int j;
+      for(j=0;j<12;j++)
+	if(box[j].open) score += box[j].value; //open tiles' values are added to score
+
+      //record the game
+      if(score==0) shut++;
+      if(score==76) worst++;
+      h1fill(&h,score);
+    }
+
+    printf("Strategy: More-Tiles-First\n");
+    printf("Pseudogames tested: %i\n",trials);
+    printf("Worst possible score: 76\n"); //double snake-eyes
+    printf("Chance of worst score = %lf%%\n", (worst*100.)/trials);
+    printf("Chance of shutting the box = %lf%%\n", (shut*100.)/trials);
+
+    h1plot(&h,"");}
+
+  if(strat == 2||strat == 0){
+    h1 h;
+    h1init(&h,77,-0.5,76.5,"Results of turns using Fewer-Tiles-First strategy");
+    h1labels(&h,"Score","Entries");
+    int shut=0, worst=0;
+
+    int i;
+    for(i=0;i<trials;i++){
+      
+      tile box[12];
+      int j;
+      for(j=0;j<12;j++){ //make the new box
+	box[j].value = j+1;
+	box[j].open = 1;}
+
+      int keep_going = 1;
+      while(keep_going){
+	int roll = randui(1,6) + randui(1,6);
+	keep_going = turn(box, roll, 2);
+      }
+
+      int score=0;
+      int j;
+      for(j=0;j<12;j++)
+	if(box[j].open) score += box[j].value; //open tiles' values are added to score
+
+      //record the game
+      if(score==0) shut++;
+      if(score==76) worst++;
+      h1fill(&h,score);
+    }
+
+    printf("Strategy: Fewer-Tiles-First\n");
+    printf("Pseudogames tested: %i\n",trials);
+    printf("Worst possible score: 76\n"); //double snake-eyes
+    printf("Chance of worst score = %lf%%\n", (worst*100.)/trials);
+    printf("Chance of shutting the box = %lf%%\n", (shut*100.)/trials);
+
+    h1plot(&h,"");}
+
+  return 0;
+}
+
+int turn(tile *box, int roll, int strat){
+
+  int total_left=0;
+  int i;
+  for(i=0;i<12;i++)
+    if(box[i].open) total_left += box[i].value; //gets the total of open slots
+
+  if(roll>total_left) return 0; //no possible move
+
+  if(strat == 1){
+
+
+  }
+
+  else if(strat == 2){
+
+
+
+
+  }
+
+  else return 0; //should never execute
+}

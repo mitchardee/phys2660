@@ -1,0 +1,57 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Homework #: 7
+// Problem #: 2
+// Program Name: emh3fm_grava.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+#include <stdio.h>
+#include <string.h>
+
+typedef struct{
+  double s_vec[3];  // space(position) vector
+  double v_vec[3];  // velocity vector 
+  double f_vec[3];  // force vector
+  double mass;
+} body;
+
+const int MAX = 100;
+
+int read(char *fileName, body *corpses);
+void com(body *corpses,int size);
+
+
+
+
+
+
+
+
+
+int read(char *fileName, body *corpses){
+  FILE *in = fopen(fileName, "r");
+  if(in==NULL) return -1;
+  int status=3;
+  int i;
+  for(i=0;i<MAX;i++){
+    status = fscanf(in,"%lf %lf %lf %lf %lf %lf %lf",corpses[i].s_vec[0],corpses[i].s_vec[1],corpses[i].s_vec[2],corpses[i].v_vec[0],corpses[i].v_vec[1],corpses[i].v_vec[2],corpses[i].mass);
+    if(status==EOF||status!=7) break;
+  }
+  fclose(in);
+  return i;
+}
+
+void com(body *corpses, int size){
+  double x_com=0.,y_com=0.,z_com=0.,mass_sum=0.;  
+  int i;
+  for(i=0;i<size;i++){
+    x_com += corpses[i].svec[0]*corpses[i].mass;
+    y_com += corpses[i].svec[1]*corpses[i].mass;
+    z_com += corpses[i].svec[2]*corpses[i].mass;
+    mass_sum += corpses[i].mass;}
+  x_com /= mass_sum;
+  y_com /= mass_sum;
+  z_com /= mass_sum;
+  printf("Center of Mass: (%8.2lf, %8.2lf, %8.2lf)\n",x_com,y_com,z_com);
+  return;
+}

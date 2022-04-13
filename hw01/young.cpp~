@@ -1,0 +1,15 @@
+//Mitchell Hardee
+//emh3fm
+
+#include <stdio.h>
+
+const double PI = 3.14159;
+
+int main(){
+
+  FILE *inFile;
+  float y_mod, e_lim;
+  float length, radius,area;
+  scanf("What is the length (m)?\n",&length);
+  scanf("What is the radius (cm)?\n",&radius);
+  area = (radius/100.0)*(radius/100.0)*PI; //converts radius to meters to find area in m^2
