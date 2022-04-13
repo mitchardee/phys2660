@@ -1,0 +1,22 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Homework #: 10
+// Problem #: 1
+// Program Name: emh3fm_rfun.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "random.hpp"
+#include "hist.hpp"
+
+const double PI = 3.14159265358979;
+
+double f1(double x){
+  return exp((-1)*x*x);}
+
+double f2(double x){
+  return (10.)/((2*PI)*(pow(x-100,2)+25));}
+
+double f3(double x){

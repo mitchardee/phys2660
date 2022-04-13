@@ -1,0 +1,18 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include "random.hpp"
+#include "hist.hpp"
+
+int main(){
+
+  h1 h;
+  h1init(&h, 500, 0,5, "fuck this");
+
+  int i;
+  for(i=0;i<100000;i++)
+    h1fill(&h, ranExp(.5));
+
+  h1plot(&h,"");
+  return 0;
+}

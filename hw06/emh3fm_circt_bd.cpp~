@@ -1,0 +1,59 @@
+//Name: Mitchell Hardee
+//Computing ID: emh3fm
+//Homework #: 6
+// Problem #: 1
+// Program Name: emh3fm_circt_bd.cpp
+// Pledge Signature: On my honor as a student, I have neither given nor recieved aid on this assignment.
+
+
+#include <stdio.h>
+#include <math.h>
+
+const double very_small = 1.0e-6;
+
+int main(int argc, char *argv[]){
+  
+  double t1,t2,t3,t4;
+  int rows=10,cols=10; //default dimensions
+
+  if(!(argc==5||argc==6||argc==7)){
+    printf("Incorrect number of arguments\n Enter: <t1> <t2> <t3> <t4> <opt:rows> <opt:cols>\n");
+    return -1;}
+
+    t1=atof(argv[1]);
+    t2=atof(argv[2]);
+    t3=atof(argv[3]);
+    t4=atof(argv[4]);
+
+    if(argc==6)
+      rows=atoi(argv[5]);
+    if(argc==7)
+      cols=atoi(argv[6]);
+    else cols=rows;
+
+    //make the board
+  double board[rows][cols];
+  int k;
+  for(k=0;k<cols;k++)
+    board[0][k]=t1;
+  for(k=0;k<rows;k++)
+    board[k][cols-1]=t2;
+  for(k=0;k<cols;k++)
+    board[rows-1][k]=t3;
+  for(k=0;k<rows;k++)
+    board[k][0]=t4;
+  double default = (t1+t2+t3+t4)/4;
+  int l;
+
+  double biggest_difference=0.;
+  do{
+    int i;
+    for(i=1;i<cols-1;i++){
+      int j;
+      for(j=1;j<rows-1;j++)
+
+	}
+  }while(biggest_difference>very_small);
+
+  return 0;
+}
